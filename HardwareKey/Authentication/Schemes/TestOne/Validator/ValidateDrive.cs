@@ -27,6 +27,7 @@ namespace HardwareKey.Authentication.Schemes.TestOne.Validator
 
         private bool RunCheckOnDrive(ManagementBaseObject drive)
         {
+            if (drive == null) return false;
             var checkHash = CreateHash(drive["VolumeSerialNumber"].ToString());
             return (checkHash == _expected);
         }
