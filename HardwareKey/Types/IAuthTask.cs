@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HardwareKey.Types
 {
-    interface IAuthTask
+    public interface IAuthTask
     {
         void Main();
     }

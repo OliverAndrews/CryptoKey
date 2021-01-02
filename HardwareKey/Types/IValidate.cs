@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HardwareKey.Types
 {
-    interface IValidate<T>
+    public interface IValidate<T>
     {
         bool Check(T certificate);
     }

@@ -1,8 +1,8 @@
 ﻿using HardwareKey.Types;
 
-namespace HardwareKey.Authentication.Schemes
+namespace HardwareKey.Authentication.Schemes.TestOne
 {
-    class AuthenticateHardware<T> : IAuthenticate<T>
+    public class AuthenticateHardware<T> : IAuthenticate<T>
     {
         private IValidate<T> _validator;
         private T _certificate;
