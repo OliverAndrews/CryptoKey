@@ -113,6 +113,9 @@ namespace UsbScraps
             if (_validator.Check(_certificate))
             {
                 next.Main();
+            } else
+            {
+                Console.WriteLine("Failed to authenticate hardware");
             }
 
         }
