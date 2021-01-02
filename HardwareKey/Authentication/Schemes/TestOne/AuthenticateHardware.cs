@@ -1,4 +1,5 @@
 ﻿using HardwareKey.Types;
+using System;
 
 namespace HardwareKey.Authentication.Schemes.TestOne
 {
@@ -18,6 +19,9 @@ namespace HardwareKey.Authentication.Schemes.TestOne
             if (_validator.Check(_certificate))
             {
                 next.Main();
+            } else
+            {
+                Console.WriteLine("Failed to authenticate");
             }
 
         }
