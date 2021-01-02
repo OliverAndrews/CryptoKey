@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace UsbScraps
 {
@@ -11,7 +13,7 @@ namespace UsbScraps
         {
             var finder = new ManagerDeviceFinder();
             var result = finder.GetDeviceByLabel("TESTDISK");
-            var auth = new AuthenticateHardware<ManagementBaseObject>(new ValidateDrive(), result);
+            var auth = new AuthenticateHardware<ManagementBaseObject>(new ValidateDrive("42E7D729"), result);
             auth.AuthenticateThen(new AuthTest());
         }
     }
@@ -40,9 +42,27 @@ namespace UsbScraps
     #region Validator Definition
     class ValidateDrive : IValidate<ManagementBaseObject>
     {
+
+        private string _expected;
+        public ValidateDrive(string expected)
+        {
+            _expected = CreateHash(expected);
+        }
+        private string CreateHash(string target)
+        {
+            string stringHash;
+            using (var md5 = MD5.Create())
+            {
+                var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(target));
+                stringHash = BitConverter.ToString(hash).Replace("-", "");
+            }
+            return stringHash;
+        }
+
         private bool RunCheckOnDrive(ManagementBaseObject drive)
         {
-            return (drive["VolumeName"].ToString() == "TESTDISK");
+            var checkHash = CreateHash(drive["VolumeSerialNumber"].ToString());
+            return (checkHash == _expected);
         }
 
         public bool Check(ManagementBaseObject drive)
