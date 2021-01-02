@@ -1,8 +1,7 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using System.Management;
-using System.Collections.Generic;
 
 namespace UsbScraps
 {
@@ -67,7 +66,7 @@ namespace UsbScraps
     }
 
     interface IValidate<T>
-    { 
+    {
         bool Check(T certificate);
     }
 
@@ -95,9 +94,9 @@ namespace UsbScraps
             {
                 next.Main();
             }
-            
+
         }
-        
+
     }
 
     class ManagerDeviceFinder : IDriveFinder<ManagementBaseObject>
