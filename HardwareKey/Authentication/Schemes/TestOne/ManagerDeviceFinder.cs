@@ -4,10 +4,10 @@ using System.Linq;
 using System.Management;
 using HardwareKey.Authentication.Schemes.TestOne.Types;
 
-namespace HardwareKey.Authentication.Schemes
+namespace HardwareKey.Authentication.Schemes.TestOne
 {
 
-    class ManagerDeviceFinder : IDriveFinder<ManagementBaseObject>
+    public class ManagerDeviceFinder : IDriveFinder<ManagementBaseObject>
     {
 
         public ManagementBaseObject GetDeviceByLabel(string name)

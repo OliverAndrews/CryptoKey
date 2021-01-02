@@ -1,6 +1,6 @@
 ﻿namespace HardwareKey.Types
 {
-    interface IAuthenticate<T>
+    public interface IAuthenticate<T>
     {
         void AuthenticateThen(IAuthTask next);
     }

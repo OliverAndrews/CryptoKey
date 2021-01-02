@@ -9,4 +9,8 @@
     <PackageReference Include="System.Management" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HardwareKey\HardwareKey.csproj" />
+  </ItemGroup>
+
 </Project>
